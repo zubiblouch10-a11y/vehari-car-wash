@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
-import { generateLocalBusinessSchema, generateFAQSchema } from "@/lib/schema";
+import {
+  generateLocalBusinessSchema,
+  generateFAQSchema,
+  generateWebSiteSchema,
+} from "@/lib/schema";
 import { BUSINESS_NAME, DOMAIN } from "@/lib/businessData";
 
 const inter = Inter({
@@ -18,13 +22,17 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
+  // ── Core ──────────────────────────────────────────────────────────────────
   metadataBase: new URL(DOMAIN),
+  applicationName: BUSINESS_NAME,
+
   title: {
-    default: `${BUSINESS_NAME} | Doorstep Car Wash Bahrain`,
+    default: "Vehari Car Wash & Detailing | Doorstep Mobile Car Wash Bahrain",
     template: `%s | ${BUSINESS_NAME}`,
   },
   description:
-    "Bahrain's premier doorstep mobile car wash and detailing service. Professional car cleaning delivered to your home across Manama, Seef, Riffa, Juffair, Amwaj Islands, and 4 more areas — 7 days a week. Book via WhatsApp.",
+    "Bahrain's #1 doorstep mobile car wash and detailing service. We come to you — Manama, Seef, Riffa, Juffair, Amwaj Islands & more. Book via WhatsApp in seconds. Open 7 days, 8 AM–10 PM.",
+
   keywords: [
     "doorstep car wash Bahrain",
     "mobile car detailing Bahrain",
@@ -40,45 +48,62 @@ export const metadata: Metadata = {
     "mobile car wash Saar",
     "car detailing Isa Town",
     "professional car wash Diplomatic Area",
+    "car wash subscription Bahrain",
+    "ceramic coating Bahrain",
   ],
+
+  // ── Canonical + hreflang ─────────────────────────────────────────────────
   alternates: {
     canonical: "/",
     languages: {
       en: "/",
+      "x-default": "/",
     },
   },
+
+  // ── Google Search Console verification ───────────────────────────────────
+  verification: {
+    google: "F4U80it7b6mNl8gmtGlb7fFQyWHHFV-MlSAfgDMOgQ0",
+  },
+
+  // ── Open Graph ───────────────────────────────────────────────────────────
   openGraph: {
-    title: `${BUSINESS_NAME} | Doorstep Car Wash Bahrain`,
-    description:
-      "Bahrain's premier doorstep mobile car wash and detailing service. Professional car cleaning delivered to your home across 9 areas in Bahrain — 7 days a week.",
+    type: "website",
+    locale: "en_BH",
     url: DOMAIN,
     siteName: BUSINESS_NAME,
-    locale: "en_BH",
-    type: "website",
+    title: "Vehari Car Wash & Detailing | Doorstep Mobile Car Wash Bahrain",
+    description:
+      "Professional mobile car wash and detailing delivered to your door across 9 areas in Bahrain — 7 days a week, fully equipped. Book via WhatsApp.",
     images: [
       {
-        url: `${DOMAIN}/images/vehari-car-wash-bahrain-og.jpg`,
+        url: "/images/vehari-car-wash-bahrain-og.jpg",
         width: 1200,
         height: 630,
         alt: "Vehari Car Wash and Detailing Services — Professional Doorstep Mobile Car Wash across Bahrain",
+        type: "image/jpeg",
       },
     ],
   },
+
+  // ── Twitter / X card ─────────────────────────────────────────────────────
   twitter: {
     card: "summary_large_image",
-    title: `${BUSINESS_NAME} | Doorstep Car Wash Bahrain`,
+    title: "Vehari Car Wash & Detailing | Doorstep Mobile Car Wash Bahrain",
     description:
-      "Professional mobile car wash and detailing at your doorstep across Bahrain. Book via WhatsApp — 7 days a week, 8 AM – 10 PM.",
-    images: [`${DOMAIN}/images/vehari-car-wash-bahrain-og.jpg`],
+      "Mobile car wash and detailing at your doorstep across Bahrain. Book via WhatsApp — 7 days a week, 8 AM–10 PM.",
+    images: ["/images/vehari-car-wash-bahrain-og.jpg"],
   },
+
+  // ── Favicons / icons (supplement auto-detected favicon.ico + apple-icon.png) ──
   icons: {
-    // favicon.ico and apple-icon.png in src/app/ are auto-detected by Next.js.
-    // These extra entries cover the 16×16 and 32×32 PNG variants in /public.
     icon: [
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
     ],
   },
+
+  // ── Crawl directives ─────────────────────────────────────────────────────
   robots: {
     index: true,
     follow: true,
@@ -90,18 +115,27 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+
+  // ── Browser/UX signals ───────────────────────────────────────────────────
+  // Prevents iOS from auto-linking phone numbers and addresses (we control markup)
+  formatDetection: {
+    telephone: false,
+    address: false,
+    email: false,
+  },
+
+  category: "automotive",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const localBusinessSchema = generateLocalBusinessSchema();
   const faqSchema = generateFAQSchema();
+  const webSiteSchema = generateWebSiteSchema();
 
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${manrope.variable} h-full`}
-    >
+    <html lang="en" className={`${inter.variable} ${manrope.variable} h-full`}>
       <head>
+        {/* ── Structured data (JSON-LD) ──────────────────────────────────── */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
@@ -110,6 +144,25 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchema) }}
+        />
+
+        {/* ── Resource hints for critical origins ───────────────────────── */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://wa.me" />
+        <link rel="dns-prefetch" href="https://www.google.com" />
+
+        {/* ── iOS PWA meta ──────────────────────────────────────────────── */}
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-title" content="Vehari Car Wash" />
+
+        {/* ── Theme color for browser chrome (matches dark design) ──────── */}
+        <meta name="theme-color" content="#09090b" />
+        <meta name="msapplication-TileColor" content="#09090b" />
       </head>
       <body className="min-h-full flex flex-col bg-zinc-950 text-zinc-50 antialiased">
         {children}

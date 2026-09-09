@@ -92,6 +92,38 @@ export function generateFAQSchema(): Record<string, unknown> {
   };
 }
 
+export function generateWebSiteSchema(): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: BUSINESS_NAME,
+    url: DOMAIN,
+    description:
+      "Bahrain's premier doorstep mobile car wash and detailing service — Manama, Seef, Riffa, Juffair, Amwaj Islands, and more. Book via WhatsApp, 7 days a week.",
+    inLanguage: "en",
+    publisher: {
+      "@type": "Organization",
+      name: BUSINESS_NAME,
+      url: DOMAIN,
+      logo: {
+        "@type": "ImageObject",
+        url: `${DOMAIN}/images/logo.webp`,
+        width: 200,
+        height: 200,
+      },
+      sameAs: [INSTAGRAM_URL, TIKTOK_URL, FACEBOOK_URL, GOOGLE_BUSINESS_PROFILE],
+    },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${DOMAIN}/?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
+  };
+}
+
 export function generateBreadcrumbSchema(
   items: Array<{ name: string; url: string }>
 ): Record<string, unknown> {

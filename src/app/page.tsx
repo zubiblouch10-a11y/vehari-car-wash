@@ -10,10 +10,14 @@ import MobileStickyBar from "@/components/MobileStickyBar";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: `${BUSINESS_NAME} | Doorstep Car Wash & Detailing Bahrain`,
-  description: `Professional doorstep car wash and mobile detailing service across ${COVERAGE_AREAS.join(", ")} in Bahrain. Book via WhatsApp — 7 days a week, 8 AM – 10 PM.`,
+  title: "Vehari Car Wash & Detailing | Doorstep Mobile Car Wash Bahrain",
+  description: `Professional doorstep car wash and mobile detailing across ${COVERAGE_AREAS.join(", ")} in Bahrain. Fully equipped, no water or power needed from you. Book via WhatsApp — 7 days a week, 8 AM–10 PM.`,
   alternates: {
-    canonical: DOMAIN,
+    canonical: "/",
+    languages: {
+      en: "/",
+      "x-default": "/",
+    },
   },
 };
 
