@@ -11,10 +11,12 @@ export default function NavDropdown({
   label,
   items,
   columns = 1,
+  viewAll,
 }: {
   label: string;
   items: DropdownItem[];
   columns?: 1 | 2;
+  viewAll?: DropdownItem;
 }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -75,6 +77,17 @@ export default function NavDropdown({
                 </Link>
               </li>
             ))}
+            {viewAll && (
+              <li className={columns === 2 ? "col-span-2" : ""}>
+                <Link
+                  href={viewAll.href}
+                  onClick={() => setOpen(false)}
+                  className="mt-1 block rounded-lg border-t border-zinc-800 px-3 py-2 text-sm font-medium text-accent transition-colors hover:bg-zinc-800"
+                >
+                  {viewAll.label} →
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       )}

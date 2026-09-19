@@ -17,7 +17,7 @@ export default function MobileStickyBar() {
       <a
         href={PHONE_HREF}
         className="flex-1 flex items-center justify-center gap-2.5 py-4 bg-zinc-900 border-t border-zinc-800 text-zinc-200 font-semibold text-sm active:bg-zinc-800 transition-colors"
-        aria-label={`Call us at ${PHONE_DISPLAY}`}
+        aria-label={`Call now: ${PHONE_DISPLAY}`}
       >
         <PhoneCall className="w-5 h-5 text-accent" aria-hidden="true" />
         <span>Call Now</span>
@@ -29,8 +29,7 @@ export default function MobileStickyBar() {
       {/* Book (form → saved to admin panel → opens WhatsApp) */}
       <Link
         href="/booking"
-        className="flex-1 flex items-center justify-center gap-2.5 py-4 bg-whatsapp text-white font-semibold text-sm active:bg-whatsapp/90 transition-colors"
-        aria-label="Book a doorstep car wash on WhatsApp"
+        className="flex-1 flex items-center justify-center gap-2.5 py-4 bg-whatsapp-strong text-white font-semibold text-sm active:bg-whatsapp-strong/90 transition-colors"
       >
         <MessageCircle className="w-5 h-5" aria-hidden="true" />
         <span>Book on WhatsApp</span>

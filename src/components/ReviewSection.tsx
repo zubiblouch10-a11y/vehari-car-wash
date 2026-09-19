@@ -21,7 +21,7 @@ const cardVariants = {
 
 function StarRow({ count = 5 }: { count?: number }) {
   return (
-    <span className="flex" aria-label={`${count} out of 5 stars`}>
+    <span className="flex" role="img" aria-label={`${count} out of 5 stars`}>
       {Array.from({ length: 5 }).map((_, i) => (
         <Star
           key={i}
@@ -118,7 +118,7 @@ export default function ReviewSection() {
                   <p className="text-zinc-50 font-semibold text-sm">
                     {testimonial.name}
                   </p>
-                  <p className="text-zinc-500 text-xs">{testimonial.area}, Bahrain</p>
+                  <p className="text-zinc-400 text-xs">{testimonial.area}, Bahrain</p>
                 </div>
                 <div className="ml-auto">
                   <StarRow count={testimonial.rating} />

@@ -76,7 +76,7 @@ export default async function AdminDashboardPage() {
         )}
 
         {!error && bookings.length > 0 && (
-          <p className="mt-3 text-sm text-zinc-500">
+          <p className="mt-3 text-sm text-zinc-400">
             {bookings.length} total · {count("pending")} pending · {count("confirmed")} confirmed ·{" "}
             {count("cancelled")} cancelled
           </p>
@@ -89,7 +89,7 @@ export default async function AdminDashboardPage() {
         )}
 
         {!error && bookings.length === 0 && (
-          <p className="mt-10 text-center text-zinc-500">
+          <p className="mt-10 text-center text-zinc-400">
             No bookings yet. New bookings will show up here.
           </p>
         )}
@@ -112,7 +112,7 @@ export default async function AdminDashboardPage() {
                       href={whatsappReply(b)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 rounded-lg border border-whatsapp/40 px-2.5 py-1 text-xs text-whatsapp transition hover:bg-whatsapp hover:text-white"
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-whatsapp/40 px-2.5 py-1 text-xs text-whatsapp transition hover:bg-whatsapp-strong hover:text-white"
                     >
                       <MessageCircle className="h-3.5 w-3.5" aria-hidden="true" /> WhatsApp
                     </a>

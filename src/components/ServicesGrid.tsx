@@ -129,7 +129,7 @@ export default function ServicesGrid() {
                 </p>
 
                 {/* AEO capsule — plain text, crawlable by AI engines */}
-                <p className="text-zinc-500 text-xs leading-relaxed mb-6 relative">
+                <p className="text-zinc-400 text-xs leading-relaxed mb-6 relative">
                   {service.aeoCapsule}
                 </p>
 
@@ -139,15 +139,13 @@ export default function ServicesGrid() {
                     <Link
                       href={`/${SERVICE_PAGES.find((p) => p.serviceId === service.id)!.slug}`}
                       className="text-center text-sm font-medium text-zinc-400 hover:text-accent transition-colors"
-                      aria-label={`Learn more about ${service.name}`}
                     >
-                      Learn more →
+                      Learn more<span className="sr-only"> about {service.name}</span> <span aria-hidden="true">→</span>
                     </Link>
                   )}
                   <Link
                     href={`/booking?service=${service.id}`}
-                    className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl bg-whatsapp/10 border border-whatsapp/30 text-whatsapp text-sm font-semibold hover:bg-whatsapp hover:text-white hover:border-whatsapp transition-all duration-200"
-                    aria-label={`Book ${service.name} on WhatsApp`}
+                    className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl bg-whatsapp/10 border border-whatsapp/30 text-whatsapp text-sm font-semibold hover:bg-whatsapp-strong hover:text-white hover:border-whatsapp transition-all duration-200"
                   >
                     <MessageCircle className="w-4 h-4" aria-hidden="true" />
                     {service.ctaLabel}
@@ -172,7 +170,7 @@ export default function ServicesGrid() {
           </p>
           <Link
             href="/booking"
-            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-whatsapp text-white font-semibold hover:bg-whatsapp/90 active:scale-95 transition-all duration-200 shadow-lg shadow-whatsapp/20"
+            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-whatsapp-strong text-white font-semibold hover:bg-whatsapp-strong/90 active:scale-95 transition-all duration-200 shadow-lg shadow-whatsapp/20"
           >
             <MessageCircle className="w-4 h-4" aria-hidden="true" />
             Book on WhatsApp

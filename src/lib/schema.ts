@@ -7,8 +7,6 @@ import {
   COVERAGE_AREAS,
   HOURS_OPEN,
   HOURS_CLOSE,
-  AGGREGATE_RATING,
-  RATING_COUNT,
   INSTAGRAM_URL,
   TIKTOK_URL,
   FACEBOOK_URL,
@@ -28,7 +26,8 @@ export function generateLocalBusinessSchema(): Record<string, unknown> {
     name: BUSINESS_NAME,
     telephone: PHONE_DISPLAY,
     url: DOMAIN,
-    image: `${DOMAIN}/images/vehari-car-wash-bahrain.jpg`,
+    image: `${DOMAIN}/images/logo.webp`,
+    logo: `${DOMAIN}/images/logo.webp`,
     description:
       "Vehari Car Wash and Detailing Services provides professional doorstep car wash and mobile detailing across Bahrain — Manama, Seef, Riffa, Juffair, Amwaj Islands, Saar, Muharraq, Isa Town, and the Diplomatic Area. Available 7 days a week, 8 AM to 10 PM.",
     priceRange: "$$",
@@ -62,13 +61,6 @@ export function generateLocalBusinessSchema(): Record<string, unknown> {
         closes: HOURS_CLOSE,
       },
     ],
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: AGGREGATE_RATING,
-      bestRating: 5,
-      worstRating: 1,
-      ratingCount: RATING_COUNT,
-    },
     sameAs: [INSTAGRAM_URL, TIKTOK_URL, FACEBOOK_URL, GOOGLE_BUSINESS_PROFILE],
     serviceType: [
       "Doorstep Car Wash",
@@ -117,14 +109,6 @@ export function generateWebSiteSchema(): Record<string, unknown> {
         height: 200,
       },
       sameAs: [INSTAGRAM_URL, TIKTOK_URL, FACEBOOK_URL, GOOGLE_BUSINESS_PROFILE],
-    },
-    potentialAction: {
-      "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: `${DOMAIN}/?q={search_term_string}`,
-      },
-      "query-input": "required name=search_term_string",
     },
   };
 }
@@ -196,6 +180,7 @@ export function generateServicePageSchema(page: ServicePage): Record<string, unk
       },
       breadcrumbEntity(url, [
         { name: "Home", url: DOMAIN },
+        { name: "Services", url: `${DOMAIN}/services` },
         { name: page.name, url },
       ]),
       faqEntity(url, page.faqs),
@@ -236,9 +221,51 @@ export function generateLocationPageSchema(page: LocationPage): Record<string, u
       },
       breadcrumbEntity(url, [
         { name: "Home", url: DOMAIN },
+        { name: "Areas", url: `${DOMAIN}/areas` },
         { name: `Car wash in ${page.area}`, url },
       ]),
       faqEntity(url, page.faqs),
+    ],
+  };
+}
+
+export function generateHubPageSchema(hub: {
+  slug: string;
+  name: string;
+  metaTitle: string;
+  metaDescription: string;
+  items: Array<{ name: string; href: string }>;
+}): Record<string, unknown> {
+  const url = `${DOMAIN}/${hub.slug}`;
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": `${url}#webpage`,
+        url,
+        name: hub.metaTitle,
+        description: hub.metaDescription,
+        inLanguage: "en",
+        isPartOf: { "@type": "WebSite", name: BUSINESS_NAME, url: DOMAIN },
+        breadcrumb: { "@id": `${url}#breadcrumb` },
+        mainEntity: { "@id": `${url}#list` },
+        dateModified: CONTENT_LAST_MODIFIED,
+      },
+      {
+        "@type": "ItemList",
+        "@id": `${url}#list`,
+        itemListElement: hub.items.map((item, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          name: item.name,
+          url: `${DOMAIN}${item.href}`,
+        })),
+      },
+      breadcrumbEntity(url, [
+        { name: "Home", url: DOMAIN },
+        { name: hub.name, url },
+      ]),
     ],
   };
 }

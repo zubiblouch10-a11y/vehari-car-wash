@@ -24,7 +24,7 @@ export default function LocationPageTemplate({ page }: { page: LocationPage }) {
       <Navbar />
       <main>
         <PageHero
-          crumbs={[{ label: "Home", href: "/" }, { label: "Areas", href: "/#services" }, { label: page.area }]}
+          crumbs={[{ label: "Home", href: "/" }, { label: "Areas", href: "/areas" }, { label: page.area }]}
           eyebrow={`Serving ${page.area}, Bahrain`}
           h1={page.h1}
           intro={page.intro}

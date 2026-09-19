@@ -28,7 +28,7 @@ export default function PageHero({ crumbs, eyebrow, h1, intro, highlights, bookH
       />
       <div className="relative mx-auto max-w-4xl">
         <nav aria-label="Breadcrumb" className="mb-6">
-          <ol className="flex flex-wrap items-center gap-1.5 text-sm text-zinc-500">
+          <ol className="flex flex-wrap items-center gap-1.5 text-sm text-zinc-400">
             {crumbs.map((c, i) => (
               <li key={c.label} className="flex items-center gap-1.5">
                 {i > 0 && <span aria-hidden="true">/</span>}
@@ -55,7 +55,7 @@ export default function PageHero({ crumbs, eyebrow, h1, intro, highlights, bookH
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <Link
             href={bookHref}
-            className="flex items-center justify-center gap-2.5 rounded-xl bg-whatsapp px-7 py-4 text-base font-semibold text-white shadow-lg shadow-whatsapp/20 transition hover:bg-whatsapp/90 active:scale-95"
+            className="flex items-center justify-center gap-2.5 rounded-xl bg-whatsapp-strong px-7 py-4 text-base font-semibold text-white shadow-lg shadow-whatsapp/20 transition hover:bg-whatsapp-strong/90 active:scale-95"
           >
             <MessageCircle className="h-5 w-5" aria-hidden="true" />
             Book on WhatsApp
@@ -74,7 +74,7 @@ export default function PageHero({ crumbs, eyebrow, h1, intro, highlights, bookH
           <dl className="mt-8 grid gap-3 sm:grid-cols-2">
             {facts.map((f) => (
               <div key={f.label} className="rounded-2xl border border-zinc-800 bg-zinc-900/60 px-5 py-4">
-                <dt className="text-xs font-semibold uppercase tracking-wider text-zinc-500">{f.label}</dt>
+                <dt className="text-xs font-semibold uppercase tracking-wider text-zinc-400">{f.label}</dt>
                 <dd className="mt-1 text-sm leading-relaxed text-zinc-200">{f.value}</dd>
               </div>
             ))}
@@ -93,7 +93,7 @@ export default function PageHero({ crumbs, eyebrow, h1, intro, highlights, bookH
           ))}
         </ul>
 
-        <p className="mt-6 flex items-center gap-2 text-sm text-zinc-500">
+        <p className="mt-6 flex items-center gap-2 text-sm text-zinc-400">
           <CalendarCheck className="h-4 w-4" aria-hidden="true" />
           Open 7 days a week, 08:00 – 22:00.{" "}
           <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="text-whatsapp hover:underline">

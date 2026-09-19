@@ -4,16 +4,18 @@ export type LinkItem = { label: string; href: string };
 
 /** A titled block of internal links (related services, other areas…). Plain server component. */
 export default function LinkSection({
+  id,
   heading,
   intro,
   links,
 }: {
+  id?: string;
   heading: string;
   intro?: string;
   links: LinkItem[];
 }) {
   return (
-    <section className="bg-zinc-950 px-4 py-14 sm:px-6 lg:px-8">
+    <section id={id} className="bg-zinc-950 px-4 py-14 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-4xl">
         <h2 className="font-display text-2xl font-bold tracking-tight text-zinc-50">{heading}</h2>
         {intro && <p className="mt-2 max-w-2xl text-sm leading-relaxed text-zinc-400">{intro}</p>}

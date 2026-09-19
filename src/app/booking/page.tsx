@@ -1,25 +1,16 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { BUSINESS_NAME, COVERAGE_AREAS, SERVICES } from "@/lib/businessData";
-import { todayInBahrain } from "@/lib/booking";
 import BookingForm from "./BookingForm";
 
 export const metadata: Metadata = {
-  title: "Book a Doorstep Car Wash",
-  description: `Book a doorstep car wash or mobile detailing in Bahrain with ${BUSINESS_NAME}. Choose your service, area, date and time — we come to you, 7 days a week.`,
+  title: { absolute: "Book a Doorstep Car Wash in Bahrain | Vehari Car Wash" },
+  description: `Book a doorstep car wash or mobile detailing in Bahrain. Choose your service, area, date and time — we come to you 7 days a week and confirm on WhatsApp.`,
   alternates: { canonical: "/booking" },
 };
 
-export default async function BookingPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ service?: string; area?: string }>;
-}) {
-  const { service, area } = await searchParams;
-  const defaultService = SERVICES.find((s) => s.id === service)?.name;
-  const defaultArea = COVERAGE_AREAS.find((a) => a === area);
-
+export default function BookingPage() {
   return (
     <>
       <Navbar />
@@ -38,7 +29,9 @@ export default async function BookingPage({
             </p>
           </div>
 
-          <BookingForm defaultService={defaultService} defaultArea={defaultArea} minDate={todayInBahrain()} />
+          <Suspense fallback={<div className="min-h-[1100px] rounded-3xl border border-zinc-800 bg-zinc-900/50" aria-hidden="true" />}>
+            <BookingForm />
+          </Suspense>
         </div>
       </main>
       <Footer />

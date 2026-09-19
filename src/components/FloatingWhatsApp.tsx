@@ -14,8 +14,8 @@ export default function FloatingWhatsApp() {
         href={WHATSAPP_URL}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Book a doorstep car wash via WhatsApp"
-        className="relative flex items-center justify-center w-14 h-14 rounded-full bg-whatsapp shadow-xl shadow-whatsapp/30 text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-whatsapp focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
+        aria-label="Chat on WhatsApp"
+        className="relative flex items-center justify-center w-14 h-14 rounded-full bg-whatsapp-strong shadow-xl shadow-whatsapp/30 text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-whatsapp focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
       >
         {/* Pulsating glow rings */}
         <motion.span

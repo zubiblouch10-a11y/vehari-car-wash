@@ -14,7 +14,7 @@ import {
 } from "@/lib/businessData";
 
 const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 28 },
+  initial: { opacity: 1, y: 16 },
   animate: { opacity: 1, y: 0 },
   transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
 });
@@ -84,8 +84,7 @@ export default function Hero() {
         >
           <Link
             href="/booking"
-            className="flex items-center gap-3 px-7 py-4 rounded-xl bg-whatsapp text-white font-semibold text-base sm:text-lg hover:bg-whatsapp/90 active:scale-95 transition-all duration-200 shadow-lg shadow-whatsapp/20 w-full sm:w-auto justify-center"
-            aria-label="Book a doorstep car wash on WhatsApp"
+            className="flex items-center gap-3 px-7 py-4 rounded-xl bg-whatsapp-strong text-white font-semibold text-base sm:text-lg hover:bg-whatsapp-strong/90 active:scale-95 transition-all duration-200 shadow-lg shadow-whatsapp/20 w-full sm:w-auto justify-center"
           >
             <MessageCircle className="w-5 h-5" aria-hidden="true" />
             Book on WhatsApp

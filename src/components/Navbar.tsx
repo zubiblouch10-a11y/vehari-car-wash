@@ -68,8 +68,8 @@ export default function Navbar() {
 
             {/* Desktop nav */}
             <nav className="hidden md:flex items-center gap-6" aria-label="Primary">
-              <NavDropdown label="Services" items={SERVICE_ITEMS} />
-              <NavDropdown label="Areas" items={AREA_ITEMS} columns={2} />
+              <NavDropdown label="Services" items={SERVICE_ITEMS} viewAll={{ label: "View all services", href: "/services" }} />
+              <NavDropdown label="Areas" items={AREA_ITEMS} columns={2} viewAll={{ label: "View all areas", href: "/areas" }} />
               {NAV_LINKS.map((link) => (
                 <Link
                   key={link.href}
@@ -93,8 +93,7 @@ export default function Navbar() {
               </a>
               <Link
                 href="/booking"
-                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-whatsapp text-white text-sm font-semibold hover:bg-whatsapp/90 transition-colors duration-200"
-                aria-label="Book on WhatsApp"
+                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-whatsapp-strong text-white text-sm font-semibold hover:bg-whatsapp-strong/90 transition-colors duration-200"
               >
                 <MessageCircle className="w-4 h-4" aria-hidden="true" />
                 <span>Book Now</span>
@@ -138,7 +137,7 @@ export default function Navbar() {
                 <details key={group.title} className="group">
                   <summary className="flex cursor-pointer list-none items-center justify-between px-3 py-3 rounded-lg text-zinc-300 hover:text-zinc-50 hover:bg-zinc-800 text-base font-medium transition-colors">
                     {group.title}
-                    <span className="text-zinc-500 transition-transform group-open:rotate-180" aria-hidden="true">▾</span>
+                    <span className="text-zinc-400 transition-transform group-open:rotate-180" aria-hidden="true">▾</span>
                   </summary>
                   <div className="ml-3 mb-2 flex flex-col border-l border-zinc-800 pl-3">
                     {group.items.map((item) => (
@@ -177,8 +176,7 @@ export default function Navbar() {
                 <Link
                   href="/booking"
                   onClick={closeMenu}
-                  className="flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-whatsapp text-white font-semibold text-sm hover:bg-whatsapp/90 transition-colors"
-                  aria-label="Book on WhatsApp"
+                  className="flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-whatsapp-strong text-white font-semibold text-sm hover:bg-whatsapp-strong/90 transition-colors"
                 >
                   <MessageCircle className="w-4 h-4" aria-hidden="true" />
                   Book on WhatsApp

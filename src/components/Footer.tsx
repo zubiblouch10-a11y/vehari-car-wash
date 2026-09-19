@@ -97,7 +97,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-zinc-300 hover:text-whatsapp transition-colors"
-                aria-label="WhatsApp Vehari Car Wash"
+                aria-label="WhatsApp Us — Vehari Car Wash"
               >
                 <MessageCircle className="w-4 h-4 text-whatsapp shrink-0" aria-hidden="true" />
                 WhatsApp Us
@@ -227,7 +227,7 @@ export default function Footer() {
         </motion.div>
 
         {/* Bottom bar */}
-        <div className="pt-8 border-t border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-zinc-500 text-xs">
+        <div className="pt-8 border-t border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-zinc-400 text-xs">
           <p>
             &copy; {year} {BUSINESS_NAME}. All rights reserved.
           </p>

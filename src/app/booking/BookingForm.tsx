@@ -1,10 +1,11 @@
 "use client";
 
 import { useState, useTransition } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { CheckCircle2, Loader2, MessageCircle } from "lucide-react";
 import { COVERAGE_AREAS, PHONE_RAW, SERVICES } from "@/lib/businessData";
-import { TIME_SLOTS, VEHICLE_TYPES } from "@/lib/booking";
+import { TIME_SLOTS, VEHICLE_TYPES, todayInBahrain } from "@/lib/booking";
 import { createBooking, type BookingState } from "./actions";
 
 const inputClass =
@@ -46,15 +47,12 @@ function whatsappUrl(v: Record<string, string>) {
   return `https://wa.me/${PHONE_RAW}?text=${encodeURIComponent(lines.join("\n"))}`;
 }
 
-export default function BookingForm({
-  defaultService,
-  defaultArea,
-  minDate,
-}: {
-  defaultService?: string;
-  defaultArea?: string;
-  minDate: string;
-}) {
+export default function BookingForm() {
+  // Read from the URL in the browser so the /booking page itself can be static and CDN-cached.
+  const params = useSearchParams();
+  const defaultService = SERVICES.find((s) => s.id === params.get("service"))?.name;
+  const defaultArea = COVERAGE_AREAS.find((a) => a === params.get("area"));
+
   const [state, setState] = useState<BookingState>();
   const [pending, startTransition] = useTransition();
   const [submitted, setSubmitted] = useState<Record<string, string>>({});
@@ -87,7 +85,7 @@ export default function BookingForm({
             href={whatsappUrl(submitted)}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-whatsapp px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-whatsapp/90 sm:w-auto"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-whatsapp-strong px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-whatsapp-strong/90 sm:w-auto"
           >
             <MessageCircle className="h-5 w-5" aria-hidden="true" />
             Confirm on WhatsApp
@@ -153,7 +151,16 @@ export default function BookingForm({
 
         <div className="grid gap-5 sm:grid-cols-2">
           <Field id="date" label="Preferred Date">
-            <input id="date" name="date" type="date" required min={minDate} className={`${inputClass} [color-scheme:dark]`} />
+            <input
+              id="date"
+              name="date"
+              type="date"
+              required
+              ref={(el) => {
+                if (el) el.min = todayInBahrain(); // set after hydration: always "today in Bahrain"
+              }}
+              className={`${inputClass} [color-scheme:dark]`}
+            />
           </Field>
           <Field id="time" label="Preferred Time">
             <select id="time" name="time" required defaultValue="" className={inputClass}>
@@ -186,7 +193,7 @@ export default function BookingForm({
         <button
           type="submit"
           disabled={pending}
-          className="flex items-center justify-center gap-2 rounded-xl bg-whatsapp px-6 py-4 text-base font-bold text-white transition hover:bg-whatsapp/90 disabled:opacity-60"
+          className="flex items-center justify-center gap-2 rounded-xl bg-whatsapp-strong px-6 py-4 text-base font-bold text-white transition hover:bg-whatsapp-strong/90 disabled:opacity-60"
         >
           {pending ? (
             <><Loader2 className="h-5 w-5 animate-spin" aria-hidden="true" /> Booking…</>
@@ -194,7 +201,7 @@ export default function BookingForm({
             <><MessageCircle className="h-5 w-5" aria-hidden="true" /> Book on WhatsApp</>
           )}
         </button>
-        <p className="text-center text-xs text-zinc-500">
+        <p className="text-center text-xs text-zinc-400">
           No payment now. We&rsquo;ll confirm your booking on WhatsApp.
         </p>
       </div>

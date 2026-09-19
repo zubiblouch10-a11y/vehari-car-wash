@@ -34,6 +34,7 @@ export default function HomePage() {
         <Hero />
         <ServicesGrid />
         <LinkSection
+          id="areas"
           heading="Areas we serve in Bahrain"
           intro="Doorstep car wash and mobile detailing, fully equipped, in every area below."
           links={LOCATION_PAGES.map((l) => ({ label: l.area, href: `/${l.slug}` }))}

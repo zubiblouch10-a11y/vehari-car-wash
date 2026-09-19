@@ -138,7 +138,7 @@ export default function FAQAccordion({
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-whatsapp/40 text-whatsapp text-sm font-semibold hover:bg-whatsapp hover:text-white hover:border-whatsapp transition-all duration-200"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-whatsapp/40 text-whatsapp text-sm font-semibold hover:bg-whatsapp-strong hover:text-white hover:border-whatsapp transition-all duration-200"
             aria-label="Ask a question via WhatsApp"
           >
             <MessageCircle className="w-4 h-4" aria-hidden="true" />

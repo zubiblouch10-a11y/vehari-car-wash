@@ -71,15 +71,6 @@ export const metadata: Metadata = {
     title: "Vehari Car Wash & Detailing | Doorstep Mobile Car Wash Bahrain",
     description:
       "Professional mobile car wash and detailing delivered to your door across 9 areas in Bahrain — 7 days a week, fully equipped. Book via WhatsApp.",
-    images: [
-      {
-        url: "/images/vehari-car-wash-bahrain-og.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Vehari Car Wash and Detailing Services — Professional Doorstep Mobile Car Wash across Bahrain",
-        type: "image/jpeg",
-      },
-    ],
   },
 
   // ── Twitter / X card ─────────────────────────────────────────────────────
@@ -88,7 +79,6 @@ export const metadata: Metadata = {
     title: "Vehari Car Wash & Detailing | Doorstep Mobile Car Wash Bahrain",
     description:
       "Mobile car wash and detailing at your doorstep across Bahrain. Book via WhatsApp — 7 days a week, 8 AM–10 PM.",
-    images: ["/images/vehari-car-wash-bahrain-og.jpg"],
   },
 
   // ── Favicons / icons (supplement auto-detected favicon.ico + apple-icon.png) ──

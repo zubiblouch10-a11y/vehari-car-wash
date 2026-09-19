@@ -24,7 +24,7 @@ export default function ServicePageTemplate({ page }: { page: ServicePage }) {
       <Navbar />
       <main>
         <PageHero
-          crumbs={[{ label: "Home", href: "/" }, { label: "Services", href: "/#services" }, { label: page.name }]}
+          crumbs={[{ label: "Home", href: "/" }, { label: "Services", href: "/services" }, { label: page.name }]}
           eyebrow="Doorstep service · Bahrain"
           h1={page.h1}
           intro={page.intro}
