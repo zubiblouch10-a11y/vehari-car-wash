@@ -21,6 +21,7 @@ const NAV_LINKS = [
   { label: "Reviews", href: "/#reviews" },
   { label: "FAQ", href: "/#faq" },
   { label: "Contact", href: "/#contact" },
+  { label: "Booking", href: "/booking" },
 ] as const;
 
 export default function Navbar() {
@@ -74,7 +75,9 @@ export default function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-sm text-zinc-400 hover:text-zinc-50 transition-colors duration-200"
+                  className={`text-sm text-zinc-400 hover:text-zinc-50 transition-colors duration-200 ${
+                    link.href === "/booking" ? "hidden lg:inline" : ""
+                  }`}
                 >
                   {link.label}
                 </Link>
