@@ -59,7 +59,10 @@ export const metadata: Metadata = {
 
   // ── Google Search Console verification ───────────────────────────────────
   verification: {
-    google: "F4U80it7b6mNl8gmtGlb7fFQyWHHFV-MlSAfgDMOgQ0",
+    google: [
+      "F4U80it7b6mNl8gmtGlb7fFQyWHHFV-MlSAfgDMOgQ0",
+      "uOGseoDVFW_-7BJr9mymOeFaEucohvNM0nTJofGEHFk",
+    ],
   },
 
   // ── Open Graph ───────────────────────────────────────────────────────────
