@@ -15,13 +15,6 @@ const nextConfig: NextConfig = {
         destination: `https://${PRIMARY_HOST}/:path*`,
         permanent: true,
       },
-      // Routes are case-sensitive: /Admin, /Booking etc. would 404, so send them to the real page.
-      { source: "/Admin", destination: "/admin", permanent: false },
-      { source: "/Admin/:path*", destination: "/admin/:path*", permanent: false },
-      { source: "/ADMIN", destination: "/admin", permanent: false },
-      { source: "/ADMIN/:path*", destination: "/admin/:path*", permanent: false },
-      { source: "/Booking", destination: "/booking", permanent: false },
-      { source: "/BOOKING", destination: "/booking", permanent: false },
     ];
   },
 
