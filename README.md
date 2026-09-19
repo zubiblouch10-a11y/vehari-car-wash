@@ -34,3 +34,19 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Booking system & admin panel
+
+- `/booking` — public booking form. Saved to Supabase; the confirmation screen then offers a pre-filled "Confirm on WhatsApp" button.
+- `/admin` — password-protected dashboard to view bookings and Confirm / Cancel / Delete them (Call and WhatsApp buttons per customer).
+- `src/proxy.ts` — protects `/admin` behind the login cookie.
+
+### One-time setup
+
+1. Create a project at [supabase.com](https://supabase.com).
+2. Run `supabase/bookings.sql` in **SQL Editor -> New query -> Run**.
+3. Copy `.env.example` to `.env.local` and fill in:
+   - `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` — Supabase -> Project Settings -> API (secret, server-only).
+   - `ADMIN_PASSWORD` — password for `/admin`.
+   - `ADMIN_SESSION_SECRET` — random string that signs the login cookie.
+4. Add the same four variables in Vercel -> Project -> Settings -> Environment Variables before deploying.

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   Droplets,
@@ -11,7 +12,8 @@ import {
   MessageCircle,
   type LucideIcon,
 } from "lucide-react";
-import { SERVICES, WHATSAPP_URL } from "@/lib/businessData";
+import { SERVICES } from "@/lib/businessData";
+import { SERVICE_PAGES } from "@/lib/servicePages";
 
 const ICON_MAP: Record<string, LucideIcon> = {
   Droplets,
@@ -40,13 +42,6 @@ const cardVariants = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
 };
-
-function whatsappServiceUrl(serviceName: string) {
-  const msg = encodeURIComponent(
-    `Hello Vehari Car Wash, I would like to book: ${serviceName}.`
-  );
-  return `https://wa.me/97334678435?text=${msg}`;
-}
 
 export default function ServicesGrid() {
   return (
@@ -139,17 +134,24 @@ export default function ServicesGrid() {
                 </p>
 
                 {/* CTA */}
-                <div className="mt-auto relative">
-                  <a
-                    href={whatsappServiceUrl(service.name)}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                <div className="mt-auto relative flex flex-col gap-2">
+                  {SERVICE_PAGES.find((p) => p.serviceId === service.id) && (
+                    <Link
+                      href={`/${SERVICE_PAGES.find((p) => p.serviceId === service.id)!.slug}`}
+                      className="text-center text-sm font-medium text-zinc-400 hover:text-accent transition-colors"
+                      aria-label={`Learn more about ${service.name}`}
+                    >
+                      Learn more →
+                    </Link>
+                  )}
+                  <Link
+                    href={`/booking?service=${service.id}`}
                     className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl bg-whatsapp/10 border border-whatsapp/30 text-whatsapp text-sm font-semibold hover:bg-whatsapp hover:text-white hover:border-whatsapp transition-all duration-200"
-                    aria-label={`Book ${service.name} via WhatsApp`}
+                    aria-label={`Book ${service.name} on WhatsApp`}
                   >
                     <MessageCircle className="w-4 h-4" aria-hidden="true" />
                     {service.ctaLabel}
-                  </a>
+                  </Link>
                 </div>
               </motion.article>
             );
@@ -168,16 +170,13 @@ export default function ServicesGrid() {
             Not sure which package suits your car? Ask us — we&apos;ll guide
             you.
           </p>
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/booking"
             className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-whatsapp text-white font-semibold hover:bg-whatsapp/90 active:scale-95 transition-all duration-200 shadow-lg shadow-whatsapp/20"
-            aria-label="Ask us which car wash package is right for you"
           >
             <MessageCircle className="w-4 h-4" aria-hidden="true" />
-            WhatsApp Us for a Quote
-          </a>
+            Book on WhatsApp
+          </Link>
         </motion.div>
       </div>
     </section>

@@ -1,11 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { PhoneCall, MessageCircle, Star, MapPin, Clock } from "lucide-react";
 import {
   PHONE_HREF,
   PHONE_DISPLAY,
-  WHATSAPP_URL,
   AGGREGATE_RATING,
   RATING_COUNT,
   COVERAGE_AREAS,
@@ -82,16 +82,14 @@ export default function Hero() {
           {...fadeUp(0.3)}
           className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
         >
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/booking"
             className="flex items-center gap-3 px-7 py-4 rounded-xl bg-whatsapp text-white font-semibold text-base sm:text-lg hover:bg-whatsapp/90 active:scale-95 transition-all duration-200 shadow-lg shadow-whatsapp/20 w-full sm:w-auto justify-center"
-            aria-label="Book a doorstep car wash via WhatsApp"
+            aria-label="Book a doorstep car wash on WhatsApp"
           >
             <MessageCircle className="w-5 h-5" aria-hidden="true" />
             Book on WhatsApp
-          </a>
+          </Link>
           <a
             href={PHONE_HREF}
             className="flex items-center gap-3 px-7 py-4 rounded-xl border border-accent/40 text-accent font-semibold text-base sm:text-lg hover:bg-accent/10 hover:border-accent active:scale-95 transition-all duration-200 w-full sm:w-auto justify-center"

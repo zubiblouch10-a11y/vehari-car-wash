@@ -24,6 +24,9 @@ export const AGGREGATE_RATING = 5.0 as const;
 export const RATING_COUNT = 47 as const;
 
 // ASSUMPTION: 08:00–22:00 seven days a week — verify and update if actual hours differ
+// Bump this whenever page content changes materially (used for sitemap <lastmod> and schema dateModified).
+export const CONTENT_LAST_MODIFIED = "2026-09-19" as const;
+
 export const HOURS_OPEN = "08:00" as const;
 export const HOURS_CLOSE = "22:00" as const;
 
@@ -144,7 +147,7 @@ export const FAQS: FAQ[] = [
   {
     question: "How do I book a doorstep car wash in Bahrain?",
     answer:
-      "Booking is fast and simple. Send a WhatsApp message to +973 3467 8435 with your location, vehicle type, and preferred time. Our team will confirm availability and arrive at your doorstep at the agreed time. No app download or advance payment required.",
+      "Booking is fast and simple. Use our online booking form to choose your service, area, date, and time slot — or send a WhatsApp message to +973 3467 8435 with your location, vehicle type, and preferred time. Our team will confirm availability and arrive at your doorstep at the agreed time. No app download or advance payment required.",
   },
   {
     question: "What are your operating hours?",

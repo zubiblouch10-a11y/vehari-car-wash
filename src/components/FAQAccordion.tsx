@@ -3,17 +3,25 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
-import { FAQS, WHATSAPP_URL } from "@/lib/businessData";
+import { FAQS, WHATSAPP_URL, type FAQ } from "@/lib/businessData";
 import { MessageCircle } from "lucide-react";
 
-export default function FAQAccordion() {
+export default function FAQAccordion({
+  faqs = FAQS,
+  id = "faq",
+  heading = "Frequently Asked Questions",
+}: {
+  faqs?: FAQ[];
+  id?: string;
+  heading?: string;
+}) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggle = (i: number) => setOpenIndex((prev) => (prev === i ? null : i));
 
   return (
     <section
-      id="faq"
+      id={id}
       className="py-24 px-4 sm:px-6 lg:px-8 bg-zinc-950"
       aria-labelledby="faq-heading"
     >
@@ -33,7 +41,7 @@ export default function FAQAccordion() {
             id="faq-heading"
             className="font-display font-extrabold text-3xl sm:text-4xl text-zinc-50 mb-4"
           >
-            Frequently Asked Questions
+            {heading}
           </h2>
           <p className="text-zinc-400 text-base leading-relaxed">
             Everything you need to know about our doorstep car wash and
@@ -51,7 +59,7 @@ export default function FAQAccordion() {
           className="flex flex-col gap-2"
           role="list"
         >
-          {FAQS.map((faq, i) => {
+          {faqs.map((faq, i) => {
             const isOpen = openIndex === i;
             const itemId = `faq-item-${i}`;
             const answerId = `faq-answer-${i}`;

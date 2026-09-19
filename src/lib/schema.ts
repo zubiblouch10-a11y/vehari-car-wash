@@ -14,12 +14,17 @@ import {
   FACEBOOK_URL,
   GOOGLE_BUSINESS_PROFILE,
   FAQS,
+  CONTENT_LAST_MODIFIED,
+  type FAQ,
 } from "./businessData";
+import type { ServicePage } from "./servicePages";
+import type { LocationPage } from "./locationPages";
 
 export function generateLocalBusinessSchema(): Record<string, unknown> {
   return {
     "@context": "https://schema.org",
     "@type": ["LocalBusiness", "AutoWash", "ServiceAreaBusiness"],
+    "@id": `${DOMAIN}/#business`,
     name: BUSINESS_NAME,
     telephone: PHONE_DISPLAY,
     url: DOMAIN,
@@ -136,5 +141,104 @@ export function generateBreadcrumbSchema(
       name: item.name,
       item: item.url,
     })),
+  };
+}
+
+// ─── Service + area page schema ──────────────────────────────────────────────
+
+const faqEntity = (pageUrl: string, faqs: FAQ[]) => ({
+  "@type": "FAQPage",
+  "@id": `${pageUrl}#faq`,
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+});
+
+const breadcrumbEntity = (pageUrl: string, trail: Array<{ name: string; url: string }>) => ({
+  "@type": "BreadcrumbList",
+  "@id": `${pageUrl}#breadcrumb`,
+  itemListElement: trail.map((t, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: t.name,
+    item: t.url,
+  })),
+});
+
+export function generateServicePageSchema(page: ServicePage): Record<string, unknown> {
+  const url = `${DOMAIN}/${page.slug}`;
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": `${url}#webpage`,
+        url,
+        name: page.metaTitle,
+        description: page.metaDescription,
+        inLanguage: "en",
+        isPartOf: { "@type": "WebSite", name: BUSINESS_NAME, url: DOMAIN },
+        about: { "@id": `${url}#service` },
+        breadcrumb: { "@id": `${url}#breadcrumb` },
+        dateModified: CONTENT_LAST_MODIFIED,
+      },
+      {
+        "@type": "Service",
+        "@id": `${url}#service`,
+        name: page.name,
+        serviceType: page.name,
+        description: page.metaDescription,
+        url,
+        provider: { "@id": `${DOMAIN}/#business` },
+        areaServed: COVERAGE_AREAS.map((area) => ({ "@type": "Place", name: `${area}, Bahrain` })),
+      },
+      breadcrumbEntity(url, [
+        { name: "Home", url: DOMAIN },
+        { name: page.name, url },
+      ]),
+      faqEntity(url, page.faqs),
+    ],
+  };
+}
+
+export function generateLocationPageSchema(page: LocationPage): Record<string, unknown> {
+  const url = `${DOMAIN}/${page.slug}`;
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": `${url}#webpage`,
+        url,
+        name: page.metaTitle,
+        description: page.metaDescription,
+        inLanguage: "en",
+        isPartOf: { "@type": "WebSite", name: BUSINESS_NAME, url: DOMAIN },
+        about: { "@id": `${url}#service` },
+        breadcrumb: { "@id": `${url}#breadcrumb` },
+        dateModified: CONTENT_LAST_MODIFIED,
+      },
+      {
+        "@type": "Service",
+        "@id": `${url}#service`,
+        name: `Mobile car wash and detailing in ${page.area}`,
+        serviceType: "Mobile car wash and detailing",
+        description: page.metaDescription,
+        url,
+        provider: { "@id": `${DOMAIN}/#business` },
+        areaServed: {
+          "@type": "City",
+          name: page.area,
+          containedInPlace: { "@type": "Country", name: "Bahrain" },
+        },
+      },
+      breadcrumbEntity(url, [
+        { name: "Home", url: DOMAIN },
+        { name: `Car wash in ${page.area}`, url },
+      ]),
+      faqEntity(url, page.faqs),
+    ],
   };
 }

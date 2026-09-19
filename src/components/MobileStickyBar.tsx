@@ -3,8 +3,9 @@
 // Visible on mobile only (< md). Sits at the bottom of the viewport, safe-area aware.
 // Desktop users see the navbar CTAs and FloatingWhatsApp instead.
 
+import Link from "next/link";
 import { PhoneCall, MessageCircle } from "lucide-react";
-import { PHONE_HREF, PHONE_DISPLAY, WHATSAPP_URL } from "@/lib/businessData";
+import { PHONE_HREF, PHONE_DISPLAY } from "@/lib/businessData";
 
 export default function MobileStickyBar() {
   return (
@@ -25,17 +26,15 @@ export default function MobileStickyBar() {
       {/* Divider */}
       <div className="w-px bg-zinc-800 shrink-0" aria-hidden="true" />
 
-      {/* WhatsApp */}
-      <a
-        href={WHATSAPP_URL}
-        target="_blank"
-        rel="noopener noreferrer"
+      {/* Book (form → saved to admin panel → opens WhatsApp) */}
+      <Link
+        href="/booking"
         className="flex-1 flex items-center justify-center gap-2.5 py-4 bg-whatsapp text-white font-semibold text-sm active:bg-whatsapp/90 transition-colors"
-        aria-label="Book a doorstep car wash via WhatsApp"
+        aria-label="Book a doorstep car wash on WhatsApp"
       >
         <MessageCircle className="w-5 h-5" aria-hidden="true" />
-        <span>WhatsApp</span>
-      </a>
+        <span>Book on WhatsApp</span>
+      </Link>
     </div>
   );
 }

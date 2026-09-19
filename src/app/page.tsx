@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
-import { BUSINESS_NAME, DOMAIN, COVERAGE_AREAS } from "@/lib/businessData";
+import { COVERAGE_AREAS } from "@/lib/businessData";
+import { LOCATION_PAGES } from "@/lib/locationPages";
+import { generateFAQSchema } from "@/lib/schema";
+import LinkSection from "@/components/pages/LinkSection";
+import JsonLd from "@/components/pages/JsonLd";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import ServicesGrid from "@/components/ServicesGrid";
@@ -24,10 +28,16 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
+      <JsonLd data={generateFAQSchema()} />
       <Navbar />
       <main>
         <Hero />
         <ServicesGrid />
+        <LinkSection
+          heading="Areas we serve in Bahrain"
+          intro="Doorstep car wash and mobile detailing, fully equipped, in every area below."
+          links={LOCATION_PAGES.map((l) => ({ label: l.area, href: `/${l.slug}` }))}
+        />
         <ReviewSection />
         <FAQAccordion />
       </main>

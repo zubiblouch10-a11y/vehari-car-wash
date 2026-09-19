@@ -21,17 +21,17 @@ import {
   TIKTOK_URL,
   FACEBOOK_URL,
   GOOGLE_BUSINESS_PROFILE,
-  COVERAGE_AREAS,
   HOURS_OPEN,
   HOURS_CLOSE,
   GOOGLE_MAPS_EMBED,
-  SERVICES,
 } from "@/lib/businessData";
+import { SERVICE_PAGES } from "@/lib/servicePages";
+import { LOCATION_PAGES } from "@/lib/locationPages";
 
 const NAV_LINKS = [
-  { label: "Services", href: "#services" },
-  { label: "Reviews", href: "#reviews" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Services", href: "/#services" },
+  { label: "Reviews", href: "/#reviews" },
+  { label: "FAQ", href: "/#faq" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -119,14 +119,14 @@ export default function Footer() {
               Services
             </h3>
             <ul className="flex flex-col gap-2" role="list">
-              {SERVICES.map((s) => (
-                <li key={s.id}>
-                  <a
-                    href={`#services`}
+              {SERVICE_PAGES.map((s) => (
+                <li key={s.slug}>
+                  <Link
+                    href={`/${s.slug}`}
                     className="text-zinc-400 text-sm hover:text-zinc-200 transition-colors"
                   >
                     {s.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -138,9 +138,14 @@ export default function Footer() {
               Service Areas
             </h3>
             <ul className="flex flex-col gap-2" role="list">
-              {COVERAGE_AREAS.map((area) => (
-                <li key={area}>
-                  <span className="text-zinc-400 text-sm">{area}</span>
+              {LOCATION_PAGES.map((l) => (
+                <li key={l.slug}>
+                  <Link
+                    href={`/${l.slug}`}
+                    className="text-zinc-400 text-sm hover:text-zinc-200 transition-colors"
+                  >
+                    {l.area}
+                  </Link>
                 </li>
               ))}
             </ul>

@@ -1,11 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
-import {
-  generateLocalBusinessSchema,
-  generateFAQSchema,
-  generateWebSiteSchema,
-} from "@/lib/schema";
+import { generateLocalBusinessSchema, generateWebSiteSchema } from "@/lib/schema";
 import { BUSINESS_NAME, DOMAIN } from "@/lib/businessData";
 
 const inter = Inter({
@@ -129,7 +125,6 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const localBusinessSchema = generateLocalBusinessSchema();
-  const faqSchema = generateFAQSchema();
   const webSiteSchema = generateWebSiteSchema();
 
   return (
@@ -139,10 +134,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         />
         <script
           type="application/ld+json"
