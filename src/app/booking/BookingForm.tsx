@@ -26,7 +26,7 @@ function Field({
     <div>
       <label htmlFor={id} className="text-xs font-medium text-zinc-400">
         {label}
-        {optional && <span className="text-zinc-600"> (optional)</span>}
+        {optional && <span className="text-zinc-400"> (optional)</span>}
       </label>
       {children}
     </div>

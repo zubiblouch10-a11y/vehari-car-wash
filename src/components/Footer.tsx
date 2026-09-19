@@ -115,9 +115,9 @@ export default function Footer() {
 
           {/* Column 2 — Services */}
           <div>
-            <h3 className="font-display font-semibold text-zinc-50 text-sm mb-4 uppercase tracking-wider">
+            <h2 className="font-display font-semibold text-zinc-50 text-sm mb-4 uppercase tracking-wider">
               Services
-            </h3>
+            </h2>
             <ul className="flex flex-col gap-2" role="list">
               {SERVICE_PAGES.map((s) => (
                 <li key={s.slug}>
@@ -134,9 +134,9 @@ export default function Footer() {
 
           {/* Column 3 — Coverage Areas */}
           <div>
-            <h3 className="font-display font-semibold text-zinc-50 text-sm mb-4 uppercase tracking-wider">
+            <h2 className="font-display font-semibold text-zinc-50 text-sm mb-4 uppercase tracking-wider">
               Service Areas
-            </h3>
+            </h2>
             <ul className="flex flex-col gap-2" role="list">
               {LOCATION_PAGES.map((l) => (
                 <li key={l.slug}>
@@ -153,9 +153,9 @@ export default function Footer() {
 
           {/* Column 4 — Links + Social */}
           <div>
-            <h3 className="font-display font-semibold text-zinc-50 text-sm mb-4 uppercase tracking-wider">
+            <h2 className="font-display font-semibold text-zinc-50 text-sm mb-4 uppercase tracking-wider">
               Quick Links
-            </h3>
+            </h2>
             <ul className="flex flex-col gap-2 mb-8" role="list">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
@@ -181,9 +181,9 @@ export default function Footer() {
               </li>
             </ul>
 
-            <h3 className="font-display font-semibold text-zinc-50 text-sm mb-3 uppercase tracking-wider">
+            <h2 className="font-display font-semibold text-zinc-50 text-sm mb-3 uppercase tracking-wider">
               Follow Us
-            </h3>
+            </h2>
             <div className="flex gap-3" role="list" aria-label="Social media links">
               <a
                 href={INSTAGRAM_URL}
